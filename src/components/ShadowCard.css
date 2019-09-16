@@ -1,0 +1,9 @@
+.Card {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2),
+    0 4px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #f1f1f1;
+  text-align: left;
+  border-radius: 5px;
+  margin: 5px auto;
+  padding-bottom: 20px;
+}

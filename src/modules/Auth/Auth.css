@@ -1,0 +1,11 @@
+.Auth-container {
+  display: block;
+  margin: 40px auto;
+}
+
+.login-form {
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+}
