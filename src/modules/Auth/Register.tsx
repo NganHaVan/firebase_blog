@@ -3,6 +3,7 @@ import './Auth.css';
 import '../../components/Form.css';
 import '../../components/Button.css';
 import ShadowCard from '../../components/ShadowCard';
+import { addToUsers } from '../../utils/user';
 import { history } from '../../App';
 
 import { firebaseApp } from '../../config/firebase';
@@ -19,6 +20,7 @@ export default function Register() {
       alert('Passwords do not match. Please try again');
       return;
     }
+    let currentUser: firebase.User;
     firebaseApp
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -40,12 +42,16 @@ export default function Register() {
       .then(() => {
         const user = firebaseApp.auth().currentUser;
         if (user) {
-          user.updateProfile({
+          currentUser = user;
+          return user.updateProfile({
             displayName: username
           });
         }
       })
-      .then(() => history.push('/'))
+      .then(() => {
+        addToUsers(currentUser);
+        history.push('/');
+      })
       .catch(err => {
         if (err.code === 'auth/email-already-in-use') {
           alert(err.message);

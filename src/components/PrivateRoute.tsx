@@ -21,7 +21,6 @@ export default function PrivateRoute({
       {...rest}
       render={props => {
         const token = localStorage.getItem('firebase_token');
-        console.log({ token });
         if (token) {
           return <Component {...props} />;
         } else {

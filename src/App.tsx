@@ -7,6 +7,7 @@ import Register from './modules/Auth/Register';
 import Login from './modules/Auth/Login';
 import Home from './modules/Home/Home';
 import Logout from './modules/Auth/Logout';
+import SinglePost from './modules/SinglePost/SinglePost';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           <PublicRoute exact path='/register' component={Register} />
           <PublicRoute exact path='/logout' component={Logout} />
           <PrivateRoute exact path='/' component={Home} />
+          <PrivateRoute exact path='/post/:id' component={SinglePost} />
         </Switch>
       </Router>
     </div>
