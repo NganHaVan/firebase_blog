@@ -2,9 +2,13 @@ import React from 'react';
 
 import './Image.css';
 
-const image = props => (
+const image = (props: {
+  imageUrl: string;
+  contain?: boolean;
+  left?: boolean;
+}) => (
   <div
-    className="image"
+    className='image'
     style={{
       backgroundImage: `url('${props.imageUrl}')`,
       backgroundSize: props.contain ? 'contain' : 'cover',

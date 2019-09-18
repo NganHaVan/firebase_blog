@@ -3,7 +3,6 @@ import React, { Fragment, useState, useEffect } from 'react';
 import Backdrop from '../../../components/Backdrop';
 import Modal from '../../Modal/Modal';
 import Input from '../../Form/Input/Input';
-// import Image from '../../Image/Image';
 import { Post } from '../../Home/Home';
 
 type FeedEditProps = {
@@ -33,8 +32,6 @@ export default function FeedEdit({
       setContent(selectedPost.description);
     }
   }, [selectedPost]);
-  console.log({ title: selectedPost ? selectedPost.title : 'no title' });
-  console.log({ title, image, content });
   let [formIsValid, setFormIsValid] = useState(false);
 
   const cancelPostChangeHandler = () => {
