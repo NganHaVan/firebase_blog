@@ -22,7 +22,7 @@ const App: React.FC = () => {
         <Switch>
           <PublicRoute exact path='/login' component={Login} />
           <PublicRoute exact path='/register' component={Register} />
-          <PublicRoute exact path='/logout' component={Logout} />
+          <PrivateRoute exact path='/logout' component={Logout} />
           <PrivateRoute exact path='/' component={Home} />
           <PrivateRoute exact path='/post/:id' component={SinglePost} />
         </Switch>

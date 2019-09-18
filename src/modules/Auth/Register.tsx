@@ -34,9 +34,10 @@ export default function Register() {
       })
       .then(loggedInUser => {
         if (loggedInUser.user) {
-          return loggedInUser.user
-            .getIdToken()
-            .then(token => localStorage.setItem('firebase_token', token));
+          return loggedInUser.user.getIdToken().then(token => {
+            localStorage.removeItem('firebase_token');
+            localStorage.setItem('firebase_token', token);
+          });
         }
       })
       .then(() => {

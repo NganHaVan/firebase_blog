@@ -34,7 +34,9 @@ export default function Header() {
   return (
     <header className='Header-container'>
       <h1 className='Header-logo'>Book Blog</h1>
-      {loggedInUser ? renderAuthList(loggedInUser) : renderUnauthList()}
+      {loggedInUser && localStorage.getItem('firebase_token')
+        ? renderAuthList(loggedInUser)
+        : renderUnauthList()}
     </header>
   );
 }

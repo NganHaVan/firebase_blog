@@ -18,9 +18,10 @@ export default function Login() {
       .signInWithEmailAndPassword(email, password)
       .then(res => {
         if (res.user) {
-          return res.user
-            .getIdToken()
-            .then(token => localStorage.setItem('firebase_token', token));
+          return res.user.getIdToken().then(token => {
+            localStorage.removeItem('firebase_token');
+            localStorage.setItem('firebase_token', token);
+          });
         }
       })
       .then(() => {
