@@ -69,7 +69,6 @@ export default function Home() {
         .doc(editedPost.id)
         .update(updatedPost)
         .then(() => {
-          console.log('Update succeeded!');
           setIsEditing(false);
           window.location.reload(false);
         })
@@ -89,7 +88,6 @@ export default function Home() {
         db.collection('Post')
           .add(newPost)
           .then(docRef => {
-            console.log('Add post succeeded! Id: ' + docRef.id);
             setIsEditing(false);
             window.location.reload(false);
           })
@@ -98,6 +96,16 @@ export default function Home() {
         alert('Cannot add new post');
       }
     }
+  };
+
+  const onDeletePost = (postId: string) => {
+    db.collection('Post')
+      .doc(postId)
+      .delete()
+      .then(() => {
+        window.location.reload(false);
+      })
+      .catch(err => console.log({ err }));
   };
 
   return (
@@ -127,7 +135,7 @@ export default function Home() {
             id={post.id}
             title={post.title}
             onStartEdit={() => onStartEdit(post.id)}
-            onDelete={() => console.log('Delete')}
+            onDelete={() => onDeletePost(post.id)}
             key={post.id}
           />
         );

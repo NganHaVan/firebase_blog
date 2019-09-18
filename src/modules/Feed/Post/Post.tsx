@@ -3,7 +3,6 @@ import React from 'react';
 import Button from '../../Button/Button';
 import Image from '../../Image/Image';
 import './Post.css';
-import { history } from '../../../App';
 import { Post } from '../../Home/Home';
 import { Timestamp } from '../../../config/firebase';
 
