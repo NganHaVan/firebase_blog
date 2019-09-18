@@ -5,6 +5,7 @@ import Image from '../../Image/Image';
 import './Post.css';
 import { Post } from '../../Home/Home';
 import { Timestamp } from '../../../config/firebase';
+import { checkUserLogIn } from '../../../utils/user';
 
 interface PostProps extends Post {
   onStartEdit: () => void;
@@ -12,6 +13,7 @@ interface PostProps extends Post {
 }
 
 const Feed = (props: PostProps) => {
+  const currentUser = checkUserLogIn();
   return (
     <article className='post'>
       <header className='post__header'>
@@ -31,12 +33,16 @@ const Feed = (props: PostProps) => {
         <Button mode='flat' link={`/post/${props.id}`}>
           View
         </Button>
-        <Button mode='flat' onClick={props.onStartEdit}>
-          Edit
-        </Button>
-        <Button mode='flat' design='danger' onClick={props.onDelete}>
-          Delete
-        </Button>
+        {currentUser && currentUser.email === props.author.email && (
+          <Button mode='flat' onClick={props.onStartEdit}>
+            Edit
+          </Button>
+        )}
+        {currentUser && currentUser.email === props.author.email && (
+          <Button mode='flat' design='danger' onClick={props.onDelete}>
+            Delete
+          </Button>
+        )}
       </div>
     </article>
   );
